@@ -11,7 +11,8 @@ export const Home = ({ films }) => {
             <li key={id}>
               <p>
                 <IoFilmOutline size={24} color={'blue'} />
-                {original_title} {name}
+                {original_title}
+                {name}
               </p>
             </li>
           ))}
