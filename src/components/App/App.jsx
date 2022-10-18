@@ -4,14 +4,15 @@ import { ToastContainer, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 
-import { Home } from '../pages/Home.';
-import { Movies } from '../components/Movies/Movies';
-import { MovieDetails } from '../components/MovieDetails/MovieDetails';
-import { Cast } from '../pages/Cast';
-import { Reviews } from '../components/Reviews/Reviews';
-import { NotFound } from '../pages/NotFound';
+import { Home } from '../../pages/Home/Home.';
+import { Movies } from '../../pages/Movies';
+import { MovieDetails } from '../MovieDetails/MovieDetails';
+import { Cast } from '../Cast';
+import { Reviews } from '../Reviews/Reviews';
+import { NotFound } from '../../pages/NotFound';
 import { fetchFilmsHomepage } from 'api';
-import { Loader } from './Loader/Loader';
+import { Loader } from '../Loader/Loader';
+import { SharedLayout } from '../SharedLayout/SharedLayout';
 
 export const App = () => {
   const [films, setFilms] = useState([]);
@@ -41,14 +42,12 @@ export const App = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Home films={films} />}>
-          <Route index element={<div>Homepage</div>} />
-          <Route path="movies" element={<Movies />}>
-            <Route index element={<div>Movies</div>} />
-            <Route path=":movieDetails" element={<MovieDetails />}>
-              <Route path="cast" element={<Cast />} />
-              <Route path="reviews" element={<Reviews />} />
-            </Route>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home films={films} />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/movies/:movieDetails" element={<MovieDetails />}>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
           </Route>
         </Route>
         <Route path="*" element={<NotFound />} />
