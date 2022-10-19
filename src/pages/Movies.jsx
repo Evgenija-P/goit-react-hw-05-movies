@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 // import { MovieDetails } from 'components/MovieDetails/MovieDetails';
 import { Outlet } from 'react-router-dom';
@@ -12,9 +12,10 @@ export const Movies = () => {
     <div>
       {!movieId && <p>Заголовок страницы</p>}
 
-      <button to="/" end>
+      <Link to="/">Go back</Link>
+      {/* <button to="/" end>
         Go back
-      </button>
+      </button> */}
 
       <Outlet />
     </div>

@@ -1,16 +1,17 @@
 // import { toast } from 'react-toastify';
 import React, { useState, useEffect } from 'react';
+import { useParams, Outlet } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 import { fetchFilmsDetails } from 'api';
-import { useParams } from 'react-router-dom';
-import { Outlet } from 'react-router-dom';
 import { Loader } from '../Loader/Loader';
+import { Wrapper, Params, Title, Topic } from './MovieDetails.styled';
 
 export const MovieDetails = () => {
   const [film, setFilm] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
   const filmPosterUrl = `https://image.tmdb.org/t/p/w500`;
-  console.log(movieId);
 
   useEffect(() => {
     setIsLoading(true);
@@ -21,7 +22,7 @@ export const MovieDetails = () => {
       })
       .catch(error => {
         console.log(error);
-        // toast.error('Oops, something went wrong. Repeat one more time!');
+        toast.error('Oops, something went wrong. Repeat one more time!');
       })
       .finally(() => {
         setIsLoading(false);
@@ -32,27 +33,33 @@ export const MovieDetails = () => {
     return;
   }
 
-  console.log(film);
-  const { poster_path, original_title, vote_average, release_date, overview } =
-    film;
+  const { poster_path, original_title, release_date, overview } = film;
+  const procent = Math.round(Number(film.vote_average) * 10);
+
   return (
     <div>
       {isLoading && <Loader />}
+
       {film && (
-        <>
+        <Wrapper>
           <div>
             <img src={`${filmPosterUrl}${poster_path}`} alt={original_title} />
           </div>
-          <div>
-            <p>{original_title}</p>
-            <p>{vote_average}</p>
-            <p>{release_date.slice(0, 4)}</p>
-            <p>{overview}</p>
-            {film.genres.map(({ id, name }) => (
-              <p key={id}>{name}</p>
-            ))}
-          </div>
-        </>
+          <Params>
+            <Title>
+              {original_title} ({release_date.slice(0, 4)})
+            </Title>
+            <span>User score: {procent}%</span>
+            <Topic>Overview</Topic>
+            <span>{overview}</span>
+            <Topic>Genres</Topic>
+            <div>
+              {film.genres.map(({ id, name }) => (
+                <span key={id}>{name}, </span>
+              ))}
+            </div>
+          </Params>
+        </Wrapper>
       )}
       <Outlet />
     </div>
