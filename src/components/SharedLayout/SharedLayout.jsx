@@ -6,7 +6,7 @@ export const SharedLayout = () => {
   return (
     <>
       <Header>
-        <Link to="/" end>
+        <Link to="/">
           <IoFilmOutline size={24} color={'orange'} />
         </Link>
 

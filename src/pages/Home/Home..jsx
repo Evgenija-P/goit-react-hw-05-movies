@@ -14,9 +14,7 @@ export const Home = () => {
     setIsLoading(true);
     fetchFilmsHomepage()
       .then(data => {
-        // console.log(data);
         const { results, total_results } = data.data;
-        // console.log(results);
         setFilms(results);
         if (total_results === 0) {
           toast.warn('Oops, we did not find anything for your request!');
@@ -30,7 +28,7 @@ export const Home = () => {
         setIsLoading(false);
       });
   }, []);
-  // console.log(films);
+
   return (
     <div>
       <span>Trending films</span>
