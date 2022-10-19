@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { AiOutlineCheck } from 'react-icons/ai';
-// import { Link } from 'react-router-dom';
-import { NavItem } from './Home.styled';
 import { toast } from 'react-toastify';
 
+import { NavItem } from './Home.styled';
 import { fetchFilmsHomepage } from '../../api';
 import { Loader } from '../../components/Loader/Loader';
 

@@ -28,3 +28,19 @@ export const fetchFilmsDetails = async id => {
     `${URL}${APIEndPoints.movieDetails}${id}?api_key=${API_KEY}`
   );
 };
+
+//api.themoviedb.org/3/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US
+
+export const fetchFilmsCast = async id => {
+  return axios.get(
+    `${URL}${APIEndPoints.movieDetails}${id}/credits?api_key=${API_KEY}`
+  );
+};
+
+// https://api.themoviedb.org/3/movie/{movie_id}/reviews?api_key=<<api_key>>&language=en-US&page=1
+
+export const fetchReviews = async id => {
+  return axios.get(
+    `${URL}${APIEndPoints.movieDetails}${id}/reviews?api_key=${API_KEY}&page=1`
+  );
+};

@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Home } from '../../pages/Home/Home.';
 import { Movies } from '../../pages/Movies';
 import { MovieDetails } from '../MovieDetails/MovieDetails';
-import { Cast } from '../Cast';
+import { Cast } from '../Cast/Cast';
 import { Reviews } from '../Reviews/Reviews';
 import { NotFound } from '../../pages/NotFound';
 // import { fetchFilmsHomepage } from 'api';

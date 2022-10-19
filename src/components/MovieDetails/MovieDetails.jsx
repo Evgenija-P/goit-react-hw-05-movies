@@ -1,6 +1,6 @@
 // import { toast } from 'react-toastify';
 import React, { useState, useEffect } from 'react';
-import { useParams, Outlet, Link } from 'react-router-dom';
+import { useParams, Outlet } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { fetchFilmsDetails } from 'api';
