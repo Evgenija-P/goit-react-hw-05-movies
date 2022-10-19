@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { BsFillPeopleFill } from 'react-icons/bs';
 
 import { fetchReviews } from 'api';
 import { Loader } from '../Loader/Loader';
+import { Title, List, Item, Wrapp, Topic } from './Reviews.styled';
 
 export const Reviews = () => {
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
 
@@ -14,7 +16,6 @@ export const Reviews = () => {
     setIsLoading(true);
     fetchReviews(movieId)
       .then(data => {
-        console.log(data.data.results);
         setReviews(data.data.results);
       })
       .catch(error => {
@@ -30,21 +31,24 @@ export const Reviews = () => {
     return;
   }
 
-  console.log(reviews);
   return (
-    <div>
-      <div>
-        {isLoading && <Loader />}
-        {reviews && (
-          <ul>
-            {reviews.map(({ id, author, content }) => (
-              <li key={id}>
-                {author} <p> {content}</p>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    </div>
+    <Wrapp>
+      {isLoading && <Loader />}
+      {reviews.length !== 0 ? (
+        <List>
+          {reviews.map(({ id, author, content }) => (
+            <Item key={id}>
+              <Topic>
+                <BsFillPeopleFill size={28} color={'orange'} />
+                {author}
+              </Topic>
+              <p> {content}</p>
+            </Item>
+          ))}
+        </List>
+      ) : (
+        <Title>Sorry we don't have any reviews for this movie </Title>
+      )}
+    </Wrapp>
   );
 };

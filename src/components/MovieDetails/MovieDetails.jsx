@@ -26,7 +26,6 @@ export const MovieDetails = () => {
     setIsLoading(true);
     fetchFilmsDetails(movieId)
       .then(data => {
-        console.log(data.data);
         setFilm(data.data);
       })
       .catch(error => {
