@@ -1,11 +1,20 @@
 // import { toast } from 'react-toastify';
 import React, { useState, useEffect } from 'react';
-import { useParams, Outlet } from 'react-router-dom';
+import { useParams, Outlet, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { fetchFilmsDetails } from 'api';
 import { Loader } from '../Loader/Loader';
-import { Wrapper, Params, Title, Topic } from './MovieDetails.styled';
+import {
+  WrapperFilm,
+  WrapperOptions,
+  Options,
+  Params,
+  Title,
+  Topic,
+  TopicOptions,
+  NavItem,
+} from './MovieDetails.styled';
 
 export const MovieDetails = () => {
   const [film, setFilm] = useState(null);
@@ -39,9 +48,8 @@ export const MovieDetails = () => {
   return (
     <div>
       {isLoading && <Loader />}
-
       {film && (
-        <Wrapper>
+        <WrapperFilm>
           <div>
             <img src={`${filmPosterUrl}${poster_path}`} alt={original_title} />
           </div>
@@ -59,9 +67,16 @@ export const MovieDetails = () => {
               ))}
             </div>
           </Params>
-        </Wrapper>
+        </WrapperFilm>
       )}
-      <Outlet />
+      <WrapperOptions>
+        <TopicOptions>Additional Information</TopicOptions>
+        <Options>
+          <NavItem to="cast">Cast</NavItem>
+          <NavItem to="reviews">Reviews</NavItem>
+        </Options>
+        <Outlet />
+      </WrapperOptions>
     </div>
   );
 };

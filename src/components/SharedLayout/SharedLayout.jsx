@@ -1,11 +1,15 @@
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
+import { IoFilmOutline } from 'react-icons/io5';
 import { StyledNav, Header } from './SharedLayout.styles';
 
 export const SharedLayout = () => {
   return (
     <>
       <Header>
-        <span>Logo</span>
+        <Link to="/" end>
+          <IoFilmOutline size={24} color={'orange'} />
+        </Link>
+
         <nav>
           <StyledNav to="/" end>
             Home

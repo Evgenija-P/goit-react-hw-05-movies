@@ -1,23 +1,21 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
-
-// import { MovieDetails } from 'components/MovieDetails/MovieDetails';
-import { Outlet } from 'react-router-dom';
+import { useParams, Outlet } from 'react-router-dom';
+import { IoArrowBackCircleOutline } from 'react-icons/io5';
+import { Wrapper, Buttom } from './Movies.styled';
 
 export const Movies = () => {
   const { movieId } = useParams();
-  // console.log(movieId);
-  //  const [isLoading, setIsLoading] = useState(false);
+
   return (
-    <div>
+    <Wrapper>
       {!movieId && <p>Заголовок страницы</p>}
 
-      <Link to="/">Go back</Link>
-      {/* <button to="/" end>
+      <Buttom to="/">
+        <IoArrowBackCircleOutline size={20} color={'orange'} />
         Go back
-      </button> */}
+      </Buttom>
 
       <Outlet />
-    </div>
+    </Wrapper>
   );
 };

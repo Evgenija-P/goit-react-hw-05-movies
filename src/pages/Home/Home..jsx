@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { IoFilmOutline } from 'react-icons/io5';
+import { AiOutlineCheck } from 'react-icons/ai';
 // import { Link } from 'react-router-dom';
 import { NavItem } from './Home.styled';
 import { toast } from 'react-toastify';
@@ -41,7 +41,7 @@ export const Home = () => {
           {films.map(({ id, original_title, name }) => (
             <NavItem key={id} to={`movies/${id}`}>
               <p>
-                <IoFilmOutline size={24} color={'blue'} />
+                <AiOutlineCheck size={20} color={'orange'} />
                 {original_title}
                 {name}
               </p>
