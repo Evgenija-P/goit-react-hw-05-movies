@@ -9,6 +9,7 @@ export const Cast = () => {
   const [cast, setCast] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
+  const filmPosterUrl = `https://image.tmdb.org/t/p/w500`;
 
   useEffect(() => {
     setIsLoading(true);
@@ -30,15 +31,14 @@ export const Cast = () => {
     return;
   }
 
-  // const { id, name } = cast;
-
   return (
     <div>
       {isLoading && <Loader />}
       {cast && (
         <ul>
-          {cast.map(({ id, name, character }) => (
+          {cast.map(({ id, name, profile_path, character }) => (
             <li key={id}>
+              <img src={`${filmPosterUrl}${profile_path}`} alt={name} />
               {name} <p>Character: {character}</p>
             </li>
           ))}
