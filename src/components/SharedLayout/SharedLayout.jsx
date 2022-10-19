@@ -1,4 +1,4 @@
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { StyledNav, Header } from './SharedLayout.styles';
 
 export const SharedLayout = () => {

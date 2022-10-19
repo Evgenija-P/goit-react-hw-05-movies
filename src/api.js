@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const API_KEY = `15150ce69b4b8fc4394b6dfaa88a912b`;
-export const URL = `https://api.themoviedb.org/`;
+export const URL = `https://api.themoviedb.org`;
 
 export const APIEndPoints = {
   trendingMovie: '/3/trending/all/day',
@@ -25,6 +25,6 @@ export const fetchFilms = async query => {
 
 export const fetchFilmsDetails = async id => {
   return axios.get(
-    `${URL}${APIEndPoints.movieDetails}?${id}?api_key=${API_KEY}`
+    `${URL}${APIEndPoints.movieDetails}${id}?api_key=${API_KEY}`
   );
 };
