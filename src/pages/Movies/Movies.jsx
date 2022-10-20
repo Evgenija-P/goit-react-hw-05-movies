@@ -28,6 +28,7 @@ const Movies = () => {
     setText(e.target.value.toLowerCase());
     setSearchParams('');
   };
+  console.log(searchParams);
 
   const handleSubmit = e => {
     e.preventDefault();
