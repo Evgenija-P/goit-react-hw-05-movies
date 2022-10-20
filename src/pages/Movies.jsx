@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Outlet, Link } from 'react-router-dom';
+import { useParams, Outlet, Link, useSearchParams } from 'react-router-dom';
 import { IoArrowBackCircleOutline } from 'react-icons/io5';
 import { AiOutlineCheck } from 'react-icons/ai';
 import { toast } from 'react-toastify';
@@ -14,9 +14,12 @@ export const Movies = () => {
   const [query, setQuery] = useState('');
   const [films, setFilms] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  // const filmtName = searchParams.get('name') ?? '';
 
   const handleChange = e => {
     setText(e.target.value.toLowerCase());
+    setSearchParams('');
   };
 
   const handleSubmit = e => {
@@ -28,6 +31,7 @@ export const Movies = () => {
     }
 
     setQuery(e.target.name.value.toLowerCase());
+    setSearchParams({ name: e.target.name.value.toLowerCase() });
   };
 
   useEffect(() => {
@@ -65,6 +69,7 @@ export const Movies = () => {
             <input
               name="name"
               type="text"
+              value={text}
               autoComplete="off"
               autoFocus
               placeholder="Search films"

@@ -20,6 +20,7 @@ export const MovieDetails = () => {
   const [film, setFilm] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
+
   const filmPosterUrl = `https://image.tmdb.org/t/p/w500`;
 
   useEffect(() => {
