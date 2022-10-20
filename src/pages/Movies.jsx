@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Outlet, Link, useSearchParams } from 'react-router-dom';
+import {
+  useParams,
+  Outlet,
+  Link,
+  useSearchParams,
+  useLocation,
+} from 'react-router-dom';
 import { IoArrowBackCircleOutline } from 'react-icons/io5';
 import { AiOutlineCheck } from 'react-icons/ai';
 import { toast } from 'react-toastify';
@@ -15,7 +21,8 @@ export const Movies = () => {
   const [films, setFilms] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  // const filmtName = searchParams.get('name') ?? '';
+  const location = useLocation();
+  const link = location.state?.from || `/`;
 
   const handleChange = e => {
     setText(e.target.value.toLowerCase());
@@ -31,7 +38,7 @@ export const Movies = () => {
     }
 
     setQuery(e.target.name.value.toLowerCase());
-    setSearchParams({ name: e.target.name.value.toLowerCase() });
+    setSearchParams({ query: e.target.name.value.toLowerCase() });
   };
 
   useEffect(() => {
@@ -59,7 +66,7 @@ export const Movies = () => {
 
   return (
     <Wrapper>
-      <Buttom to="/">
+      <Buttom to={link}>
         <IoArrowBackCircleOutline size={20} color={'orange'} />
         Go back
       </Buttom>
@@ -83,7 +90,13 @@ export const Movies = () => {
           {films.length !== 0 && (
             <ul>
               {films.map(({ id, original_title, name }) => (
-                <Link key={id} to={`${id}`}>
+                <Link
+                  key={id}
+                  to={`${id}`}
+                  state={{
+                    from: location,
+                  }}
+                >
                   <p>
                     <AiOutlineCheck size={20} color={'orange'} />
                     {original_title}

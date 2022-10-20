@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AiOutlineCheck } from 'react-icons/ai';
 import { toast } from 'react-toastify';
+import { useLocation } from 'react-router-dom';
 
 import { NavItem } from './Home.styled';
 import { fetchFilmsHomepage } from '../../api';
@@ -9,6 +10,7 @@ import { Loader } from '../../components/Loader/Loader';
 export const Home = () => {
   const [films, setFilms] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     setIsLoading(true);
@@ -37,7 +39,13 @@ export const Home = () => {
       {
         <ul>
           {films.map(({ id, original_title, name }) => (
-            <NavItem key={id} to={`movies/${id}`}>
+            <NavItem
+              key={id}
+              to={`movies/${id}`}
+              state={{
+                from: location,
+              }}
+            >
               <p>
                 <AiOutlineCheck size={20} color={'orange'} />
                 {original_title}

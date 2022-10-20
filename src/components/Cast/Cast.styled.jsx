@@ -20,7 +20,7 @@ export const Item = styled.li`
 `;
 
 export const Title = styled.span`
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
 `;
 

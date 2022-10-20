@@ -35,7 +35,7 @@ export const Cast = () => {
   return (
     <div>
       {isLoading && <Loader />}
-      {cast && (
+      {cast.length !== 0 ? (
         <List>
           {cast.map(({ id, name, profile_path, character }) => (
             <Item key={id}>
@@ -52,6 +52,11 @@ export const Cast = () => {
             </Item>
           ))}
         </List>
+      ) : (
+        <Title>
+          Unfortunately, we do not have information about the actors of this
+          film.{' '}
+        </Title>
       )}
     </div>
   );

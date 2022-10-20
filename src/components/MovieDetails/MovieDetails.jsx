@@ -1,6 +1,6 @@
 // import { toast } from 'react-toastify';
 import React, { useState, useEffect } from 'react';
-import { useParams, Outlet } from 'react-router-dom';
+import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { fetchFilmsDetails } from 'api';
@@ -20,7 +20,7 @@ export const MovieDetails = () => {
   const [film, setFilm] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
-
+  const location = useLocation();
   const filmPosterUrl = `https://image.tmdb.org/t/p/w500`;
 
   useEffect(() => {
@@ -62,9 +62,9 @@ export const MovieDetails = () => {
             <span>{overview}</span>
             <Topic>Genres</Topic>
             <div>
-              {film.genres.map(({ id, name }) => (
-                <span key={id}>{name}, </span>
-              ))}
+              {film.genres.length > 0
+                ? film.genres.map(item => item.name).join(', ')
+                : 'no info'}
             </div>
           </Params>
         </WrapperFilm>
@@ -72,8 +72,18 @@ export const MovieDetails = () => {
       <WrapperOptions>
         <TopicOptions>Additional Information</TopicOptions>
         <Options>
-          <NavItem to="cast">Cast</NavItem>
-          <NavItem to="reviews">Reviews</NavItem>
+          <NavItem
+            to="cast"
+            state={location.state?.from ? location.state : null}
+          >
+            Cast
+          </NavItem>
+          <NavItem
+            to="reviews"
+            state={location.state?.from ? location.state : null}
+          >
+            Reviews
+          </NavItem>
         </Options>
         <Outlet />
       </WrapperOptions>
