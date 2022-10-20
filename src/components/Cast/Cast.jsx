@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { fetchFilmsCast } from 'api';
+import { fetchFilmsCast } from 'servises/api';
 import { Loader } from '../Loader/Loader';
 import { List, Img, Item, Title, Character } from './Cast.styled';
 
@@ -61,3 +61,5 @@ export const Cast = () => {
     </div>
   );
 };
+
+// export default Cast;

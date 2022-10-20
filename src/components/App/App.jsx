@@ -1,19 +1,21 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ToastContainer, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { Home } from '../../pages/Home/Home.';
-import { Movies } from '../../pages/Movies';
 import { MovieDetails } from '../MovieDetails/MovieDetails';
 import { Cast } from '../Cast/Cast';
 import { Reviews } from '../Reviews/Reviews';
-import { NotFound } from '../../pages/NotFound';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
+import { AppWrapper } from './App.styled';
+
+const Home = lazy(() => import('../../pages/Home/Home'));
+const Movies = lazy(() => import('../../pages/Movies/Movies'));
+const NotFound = lazy(() => import('../../pages/NotFound'));
 
 export const App = () => {
   return (
-    <div>
+    <AppWrapper>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
@@ -28,6 +30,6 @@ export const App = () => {
       </Routes>
 
       <ToastContainer transition={Flip} />
-    </div>
+    </AppWrapper>
   );
 };

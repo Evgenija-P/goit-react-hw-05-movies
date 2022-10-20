@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { fetchFilmsDetails } from 'api';
+import { fetchFilmsDetails } from 'servises/api';
 import { Loader } from '../Loader/Loader';
 import {
   WrapperFilm,
@@ -22,6 +22,7 @@ export const MovieDetails = () => {
   const { movieId } = useParams();
   const location = useLocation();
   const filmPosterUrl = `https://image.tmdb.org/t/p/w500`;
+  const noImages = `https://banffventureforum.com/wp-content/uploads/2019/08/No-Image.png`;
 
   useEffect(() => {
     setIsLoading(true);
@@ -51,7 +52,14 @@ export const MovieDetails = () => {
       {film && (
         <WrapperFilm>
           <div>
-            <img src={`${filmPosterUrl}${poster_path}`} alt={original_title} />
+            {poster_path ? (
+              <img
+                src={`${filmPosterUrl}${poster_path}`}
+                alt={original_title}
+              />
+            ) : (
+              <img src={`${noImages}`} alt={original_title} />
+            )}
           </div>
           <Params>
             <Title>
@@ -90,3 +98,5 @@ export const MovieDetails = () => {
     </div>
   );
 };
+
+// export default MovieDetails;

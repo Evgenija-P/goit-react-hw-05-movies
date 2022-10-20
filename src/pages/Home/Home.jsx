@@ -3,11 +3,11 @@ import { AiOutlineCheck } from 'react-icons/ai';
 import { toast } from 'react-toastify';
 import { useLocation } from 'react-router-dom';
 
-import { NavItem } from './Home.styled';
-import { fetchFilmsHomepage } from '../../api';
+import { NavItem, Imem, Wrapper, Title, Options } from './Home.styled';
+import { fetchFilmsHomepage } from '../../servises/api';
 import { Loader } from '../../components/Loader/Loader';
 
-export const Home = () => {
+const Home = () => {
   const [films, setFilms] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
@@ -33,11 +33,11 @@ export const Home = () => {
   }, []);
 
   return (
-    <div>
-      <span>Trending films</span>
+    <Wrapper>
+      <Title>Trending films</Title>
       {isLoading && <Loader />}
       {
-        <ul>
+        <Imem>
           {films.map(({ id, original_title, name }) => (
             <NavItem
               key={id}
@@ -48,13 +48,17 @@ export const Home = () => {
             >
               <p>
                 <AiOutlineCheck size={20} color={'orange'} />
-                {original_title}
-                {name}
+                <Options>
+                  {original_title}
+                  {name}
+                </Options>
               </p>
             </NavItem>
           ))}
-        </ul>
+        </Imem>
       }
-    </div>
+    </Wrapper>
   );
 };
+
+export default Home;

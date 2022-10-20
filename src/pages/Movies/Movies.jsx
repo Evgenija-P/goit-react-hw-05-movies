@@ -10,11 +10,12 @@ import { IoArrowBackCircleOutline } from 'react-icons/io5';
 import { AiOutlineCheck } from 'react-icons/ai';
 import { toast } from 'react-toastify';
 
-import { fetchFilms } from 'api';
-import { Wrapper, Buttom } from './Movies.styled';
+import { fetchFilms } from 'servises/api';
+import { Wrapper, Buttom, Form, Input, Search } from './Movies.styled';
+import { NavItem, Options } from '../Home/Home.styled';
 import { Loader } from 'components/Loader/Loader';
 
-export const Movies = () => {
+const Movies = () => {
   const { movieId } = useParams();
   const [text, setText] = useState('');
   const [query, setQuery] = useState('');
@@ -72,25 +73,24 @@ export const Movies = () => {
       </Buttom>
       {!movieId && (
         <>
-          <form onSubmit={handleSubmit}>
-            <input
+          <Form onSubmit={handleSubmit}>
+            <Input
               name="name"
               type="text"
               value={text}
               autoComplete="off"
-              autoFocus
               placeholder="Search films"
               onChange={handleChange}
             />
-            <button type="submit">
+            <Search type="submit">
               <span>Search</span>
-            </button>
-          </form>
+            </Search>
+          </Form>
           {isLoading && <Loader />}
           {films.length !== 0 && (
             <ul>
               {films.map(({ id, original_title, name }) => (
-                <Link
+                <NavItem
                   key={id}
                   to={`${id}`}
                   state={{
@@ -99,10 +99,12 @@ export const Movies = () => {
                 >
                   <p>
                     <AiOutlineCheck size={20} color={'orange'} />
-                    {original_title}
-                    {name}
+                    <Options>
+                      {original_title}
+                      {name}
+                    </Options>
                   </p>
-                </Link>
+                </NavItem>
               ))}
             </ul>
           )}
@@ -113,3 +115,5 @@ export const Movies = () => {
     </Wrapper>
   );
 };
+
+export default Movies;

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { BsFillPeopleFill } from 'react-icons/bs';
 
-import { fetchReviews } from 'api';
+import { fetchReviews } from 'servises/api';
 import { Loader } from '../Loader/Loader';
 import { Title, List, Item, Wrapp, Topic } from './Reviews.styled';
 
@@ -52,3 +52,5 @@ export const Reviews = () => {
     </Wrapp>
   );
 };
+
+// export default Reviews;

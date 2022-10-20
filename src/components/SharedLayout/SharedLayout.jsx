@@ -1,6 +1,8 @@
+import { Suspense } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { IoFilmOutline } from 'react-icons/io5';
 import { StyledNav, Header } from './SharedLayout.styles';
+import { Loader } from '../../components/Loader/Loader';
 
 export const SharedLayout = () => {
   return (
@@ -17,7 +19,9 @@ export const SharedLayout = () => {
           <StyledNav to="/movies">Movies</StyledNav>
         </nav>
       </Header>
-      <Outlet />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };
