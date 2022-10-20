@@ -3,13 +3,13 @@ import { Routes, Route } from 'react-router-dom';
 import { ToastContainer, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { MovieDetails } from '../MovieDetails/MovieDetails';
-import { Cast } from '../Cast/Cast';
-import { Reviews } from '../Reviews/Reviews';
+import { MovieDetails } from '../../pages/MovieDetails/MovieDetails';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
 import { AppWrapper } from './App.styled';
 
 const Home = lazy(() => import('../../pages/Home/Home'));
+const Cast = lazy(() => import('../../pages/Cast/Cast'));
+const Reviews = lazy(() => import('../../pages/Reviews/Reviews'));
 const Movies = lazy(() => import('../../pages/Movies/Movies'));
 const NotFound = lazy(() => import('../../pages/NotFound'));
 

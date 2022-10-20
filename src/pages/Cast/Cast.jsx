@@ -3,10 +3,10 @@ import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { fetchFilmsCast } from 'servises/api';
-import { Loader } from '../Loader/Loader';
+import { Loader } from '../../components/Loader/Loader';
 import { List, Img, Item, Title, Character } from './Cast.styled';
 
-export const Cast = () => {
+const Cast = () => {
   const [cast, setCast] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
@@ -62,4 +62,4 @@ export const Cast = () => {
   );
 };
 
-// export default Cast;
+export default Cast;

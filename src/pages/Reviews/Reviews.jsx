@@ -4,10 +4,10 @@ import { toast } from 'react-toastify';
 import { BsFillPeopleFill } from 'react-icons/bs';
 
 import { fetchReviews } from 'servises/api';
-import { Loader } from '../Loader/Loader';
+import { Loader } from '../../components/Loader/Loader';
 import { Title, List, Item, Wrapp, Topic } from './Reviews.styled';
 
-export const Reviews = () => {
+const Reviews = () => {
   const [reviews, setReviews] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
@@ -53,4 +53,4 @@ export const Reviews = () => {
   );
 };
 
-// export default Reviews;
+export default Reviews;

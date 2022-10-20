@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {
   useParams,
   Outlet,
-  Link,
   useSearchParams,
   useLocation,
 } from 'react-router-dom';

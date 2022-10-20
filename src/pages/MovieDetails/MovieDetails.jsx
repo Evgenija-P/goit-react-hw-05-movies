@@ -1,10 +1,10 @@
-// import { toast } from 'react-toastify';
+import { Suspense } from 'react';
 import React, { useState, useEffect } from 'react';
 import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { fetchFilmsDetails } from 'servises/api';
-import { Loader } from '../Loader/Loader';
+import { Loader } from '../../components/Loader/Loader';
 import {
   WrapperFilm,
   WrapperOptions,
@@ -93,10 +93,10 @@ export const MovieDetails = () => {
             Reviews
           </NavItem>
         </Options>
-        <Outlet />
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
       </WrapperOptions>
     </div>
   );
 };
-
-// export default MovieDetails;
